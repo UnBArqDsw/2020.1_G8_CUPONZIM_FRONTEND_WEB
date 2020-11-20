@@ -8,6 +8,7 @@ import Camera from "@material-ui/icons/Camera";
 import Palette from "@material-ui/icons/Palette";
 import Favorite from "@material-ui/icons/Favorite";
 // core components
+import TextField from "@material-ui/core/TextField";
 import Header from "components/Header/Header.js";
 import Footer from "components/Footer/Footer.js";
 import Button from "components/CustomButtons/Button.js";
@@ -112,8 +113,43 @@ export default function ProfilePage(props) {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        <Paper style={{ width: "30%", height: "40%", margin: "auto" }}>
-        <h3 style={{textAlign: 'center', marginTop: '20px'}}>Cadastre de novos cupons!</h3>
+        <Paper style={{ width: "30%", margin: "auto", padding: '5px' }}>
+          <h3 style={{ textAlign: "center", marginTop: "20px" }}>
+            Cadastre de novos cupons!
+          </h3>
+
+          <TextField
+            id="standard-basic"
+            label="Descrição"
+            style={{ margin: "20px", textAlign: "center" }}
+          />
+          <TextField
+            id="standard-basic"
+            label="Preço Original"
+            style={{ margin: "20px", textAlign: "center" }}
+          />
+          <TextField
+            id="standard-basic"
+            label="Preço com desconto"
+            style={{ margin: "20px", textAlign: "center" }}
+          />
+          <TextField
+            id="standard-basic"
+            label="data de vencimento"
+            style={{ margin: "20px", textAlign: "center" }}
+          />
+          <TextField
+            id="standard-basic"
+            label="Qtd de cupons"
+            style={{ margin: "20px", textAlign: "center" }}
+          />
+
+          <Button
+            variant="contained"
+            style={{ backgroundColor: "#D72638", margin: "40px" }}
+          >
+            Criar Lote
+          </Button>
         </Paper>
       </Modal>
       <div className={classNames(classes.main, classes.mainRaised)}>
