@@ -55,7 +55,6 @@ export default function ProfilePage(props) {
   function createData(name, calories, fat, carbs, protein) {
     return { name, calories, fat, carbs, protein };
   }
-  
 
   function getModalStyle() {
     const top = 50;
@@ -106,14 +105,16 @@ export default function ProfilePage(props) {
         }}
         {...rest}
       />
-      <Parallax small filter image={require("assets/img/profile-bg.jpg")} />
+      <Parallax small filter image={require("assets/img/fundinho.png")} />
       <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        {body}
+        <Paper style={{ width: "30%", height: "40%", margin: "auto" }}>
+        <h3 style={{textAlign: 'center', marginTop: '20px'}}>Cadastre de novos cupons!</h3>
+        </Paper>
       </Modal>
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div>
@@ -128,10 +129,14 @@ export default function ProfilePage(props) {
                     <h3 className={classes.title}>Lojas americanas</h3>
                     <h6>10 Cupons</h6>
                     <Fab
-                      color="primary"
                       aria-label="add"
                       onClick={handleOpen}
-                      style={{ float: "right", marginBottom: "20px" }}
+                      style={{
+                        float: "right",
+                        marginBottom: "20px",
+                        backgroundColor: "#D72638",
+                        color: "white",
+                      }}
                     >
                       <AddIcon />
                     </Fab>
