@@ -113,7 +113,7 @@ export default function ProfilePage(props) {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        <Paper style={{ width: "30%", margin: "auto", padding: '5px' }}>
+        <Paper style={{ width: "30%", margin: "auto", padding: "5px" }}>
           <h3 style={{ textAlign: "center", marginTop: "20px" }}>
             Cadastre de novos cupons!
           </h3>
@@ -143,7 +143,6 @@ export default function ProfilePage(props) {
             label="Qtd de cupons"
             style={{ margin: "20px", textAlign: "center" }}
           />
-
           <Button
             variant="contained"
             style={{ backgroundColor: "#D72638", margin: "40px" }}
