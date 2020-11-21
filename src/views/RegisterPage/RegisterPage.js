@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -10,6 +10,7 @@ import People from "@material-ui/icons/People";
 import Header from "components/Header/Header.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
 import Footer from "components/Footer/Footer.js";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import Button from "components/CustomButtons/Button.js";
@@ -18,19 +19,41 @@ import CardBody from "components/Card/CardBody.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardFooter from "components/Card/CardFooter.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
-
+import axios from "axios";
 import styles from "assets/jss/material-kit-react/views/loginPage.js";
 
 import image from "assets/img/register.jpg";
+import route from  'react-router-dom'
 
 const useStyles = makeStyles(styles);
 
 export default function RegisterPage(props) {
+  const [loading, setloading] = useState(false);
   const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
   setTimeout(function () {
     setCardAnimation("");
   }, 700);
   const classes = useStyles();
+  
+  const [user, setuser] = useState({ username_shop: "", password_shop: "" });
+  async function handlelogin() {
+    setloading(true)
+    try {
+      console.log(user);
+      let resp = await axios.post(
+        "https://cors-anywhere.herokuapp.com/https://c1d03b1a3fb5.ngrok.io/shopowner",
+        { ...user }
+      );
+     
+      if(resp.data.idShopOwner){
+        props.history.push('/login-page')
+        setloading(false)
+      }
+    } catch (e) {
+      console.log(e);
+      setloading(false)
+    }
+  }
   const { ...rest } = props;
   return (
     <div>
@@ -64,6 +87,9 @@ export default function RegisterPage(props) {
                       }}
                       inputProps={{
                         type: "text",
+                        onChange: (e) => {
+                          setuser({ ...user, username_shop: e.target.value });
+                        },
                         endAdornment: (
                           <InputAdornment position="end">
                             <People className={classes.inputIconsColor} />
@@ -72,16 +98,21 @@ export default function RegisterPage(props) {
                       }}
                     />
                     <CustomInput
-                      labelText="Email..."
-                      id="email"
+                      labelText="Senha"
+                      id="senha"
                       formControlProps={{
                         fullWidth: true,
                       }}
                       inputProps={{
-                        type: "email",
+                        type: "password",
+                        onChange: (e) => {
+                          setuser({ ...user, password_shop: e.target.value });
+                        },
                         endAdornment: (
                           <InputAdornment position="end">
-                            <Email className={classes.inputIconsColor} />
+                            <Icon className={classes.inputIconsColor}>
+                              lock_outline
+                            </Icon>
                           </InputAdornment>
                         ),
                       }}
@@ -94,6 +125,9 @@ export default function RegisterPage(props) {
                       }}
                       inputProps={{
                         type: "password",
+                        onChange: (e) => {
+                          setuser({ ...user, password_shop2: e.target.value });
+                        },
                         endAdornment: (
                           <InputAdornment position="end">
                             <Icon className={classes.inputIconsColor}>
@@ -106,9 +140,18 @@ export default function RegisterPage(props) {
                     />
                   </CardBody>
                   <CardFooter className={classes.cardFooter}>
-                    <Button simple style={{ color: "#140f2d" }} size="lg">
-                      Entrar
-                    </Button>
+                  {loading ? (
+                      <CircularProgress color="secondary" />
+                    ) : (
+                      <Button
+                        onClick={handlelogin}
+                        simple
+                        style={{ color: "#140f2d" }}
+                        size="lg"
+                      >
+                        Cadastrar-se
+                      </Button>
+                    )}
                   </CardFooter>
                 </form>
               </Card>

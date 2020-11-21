@@ -39,7 +39,7 @@ import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import Modal from "@material-ui/core/Modal";
 import styles from "assets/jss/material-kit-react/views/profilePage.js";
-import image from "assets/img/americanas.png";
+import image from "assets/img/indice.jpeg";
 const useStyles = makeStyles(styles);
 
 export default function ProfilePage(props) {
@@ -69,11 +69,16 @@ export default function ProfilePage(props) {
   }
 
   const rows = [
-    createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-    createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-    createData("Eclair", 262, 16.0, 24, 6.0),
-    createData("Cupcake", 305, 3.7, 67, 4.3),
-    createData("Gingerbread", 356, 16.0, 49, 3.9),
+    createData(1, "PS5 PROMO", "10/11/2020", 0),
+    createData(2, "PS5 PROMO", "10/11/2020", 1),
+    createData(3, "PS5 PROMO", "10/11/2020", 0),
+    createData(4, "PS5 PROMO", "10/11/2020", 0),
+    createData(5, "PS5 PROMO", "10/11/2020", 1),
+    createData(6, "HOMEM ARANHA", "9/08/2020", 1),
+    createData(7, "HOMEM ARANHA", "9/08/2020", 0),
+    createData(8, "HOMEM ARANHA", "9/08/2020", 1),
+    createData(9, "HOMEM ARANHA", "9/08/2020", 0),
+    createData(10, "HOMEM ARANHA", "9/08/2020", 1),
   ];
 
   const handleOpen = () => {
@@ -86,7 +91,7 @@ export default function ProfilePage(props) {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <h2 id="simple-modal-title">Text in a modal</h2>
+      <h4 id="simple-modal-title">Text in a modal</h4>
       <p id="simple-modal-description">
         Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
       </p>
@@ -113,7 +118,7 @@ export default function ProfilePage(props) {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        <Paper style={{ width: "30%", margin: "auto", padding: '5px' }}>
+        <Paper style={{ width: "30%", margin: "auto", padding: "5px" }}>
           <h3 style={{ textAlign: "center", marginTop: "20px" }}>
             Cadastre de novos cupons!
           </h3>
@@ -162,7 +167,7 @@ export default function ProfilePage(props) {
                     <img src={image} alt="..." className={imageClasses} />
                   </div>
                   <div className={classes.name}>
-                    <h3 className={classes.title}>Lojas americanas</h3>
+                    <h3 className={classes.title}>MRD Nerdstore</h3>
                     <h6>10 Cupons</h6>
                     <Fab
                       aria-label="add"
@@ -176,6 +181,7 @@ export default function ProfilePage(props) {
                     >
                       <AddIcon />
                     </Fab>
+                    
                     <TableContainer
                       component={Paper}
                       style={{ marginBottom: "40px" }}
@@ -186,13 +192,10 @@ export default function ProfilePage(props) {
                       >
                         <TableHead>
                           <TableRow>
-                            <TableCell>Dessert (100g serving)</TableCell>
-                            <TableCell align="right">Calories</TableCell>
-                            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                            <TableCell align="right">
-                              Protein&nbsp;(g)
-                            </TableCell>
+                            <TableCell>Id</TableCell>
+                            <TableCell align="right">Lote</TableCell>
+                            <TableCell align="right">Criado</TableCell>
+                            <TableCell align="right">Usado?</TableCell>
                           </TableRow>
                         </TableHead>
                         <TableBody>
@@ -205,8 +208,7 @@ export default function ProfilePage(props) {
                                 {row.calories}
                               </TableCell>
                               <TableCell align="right">{row.fat}</TableCell>
-                              <TableCell align="right">{row.carbs}</TableCell>
-                              <TableCell align="right">{row.protein}</TableCell>
+                              <TableCell align="right">{row.carbs?(<h4 style={{color:"green"}}>SIM</h4> ):(<h4  style={{color:"red"}}>NÃO</h4> )}</TableCell>
                             </TableRow>
                           ))}
                         </TableBody>
