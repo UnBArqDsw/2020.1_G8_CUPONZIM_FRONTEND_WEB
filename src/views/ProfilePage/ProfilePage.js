@@ -148,7 +148,6 @@ export default function ProfilePage(props) {
             label="Qtd de cupons"
             style={{ margin: "20px", textAlign: "center" }}
           />
-
           <Button
             variant="contained"
             style={{ backgroundColor: "#D72638", margin: "40px" }}
